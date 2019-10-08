@@ -1,0 +1,72 @@
+.body{
+    -fx-background-image: url("splash.jpg");
+    -fx-background-size: cover;
+}
+
+.body-sign-in{
+    -fx-background-image : url("signin.jpg");
+    -fx-background-size: cover;
+}
+
+.left-side{
+    -fx-background-image: url("splash.jpg");
+    -fx-background-size: cover;
+}
+
+.btn-get-started{
+    -fx-background-radius: 50px;
+    -fx-background-color: #00796b;
+}
+
+.btn-get-started:hover{
+    -fx-background-color: #18ffff;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+}
+
+.btn-get-started:hover .glyph-icon{
+    -fx-fill: black;
+}
+
+.btn-sign-in{
+    -fx-background-radius: 50px;
+    -fx-background-color: #00796b;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.btn-sign-in:hover{
+    -fx-background-color: #84ffff;
+    -fx-text-fill: black;
+}
+
+.right-side{
+    -fx-background-image: url("splash.jpg");
+    -fx-background-size: cover;
+}
+
+.progress{
+    -fx-progress-color: #00796b;
+}
+
+.cmb-security{
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+
+.jfx-tab-pane .tab
+{
+-fx-padding:0 0 0 40;
+}
+
+.jfx-tab-pane .tab-header-area .jfx-rippler{
+    
+}
+.jfx-tab-pane .tab-header-area .tab-selected-line{
+    -fx-width: 10px;
+}
+
+.right-side-reset {
+    -fx-background-image: url("forgot_password.jpg");
+    -fx-background-size: cover;
+}

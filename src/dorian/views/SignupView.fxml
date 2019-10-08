@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="signup_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@assets/SplashScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dorian.controllers.SignUpController">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="498.0" styleClass="left-side">
+         <children>
+            <Text fill="WHITE" layoutX="1.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Your Journey Now">
+               <font>
+                  <Font name="System Bold" size="44.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="1.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;The time to repair the roof is when the sun is shining&quot;">
+               <font>
+                  <Font name="System Italic" size="20.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+      <AnchorPane layoutX="498.0" prefHeight="600.0" prefWidth="408.0" styleClass="body-sign-in">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="436.0" prefWidth="412.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account">
+                     <font>
+                        <Font name="System Bold Italic" size="26.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#4ec7c1" />
+                              <Stop color="#1fe471" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                     <VBox.margin>
+                        <Insets left="30.0" top="50.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Line endX="100.0" startX="-100.0" strokeWidth="3.0">
+                     <stroke>
+                        <LinearGradient endX="0.5619047619047619" endY="0.8047619047619048" startX="0.23333333333333336" startY="0.580952380952381">
+                           <stops>
+                              <Stop color="#c9a44d" />
+                              <Stop color="#1fe471" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                     <VBox.margin>
+                        <Insets left="30.0" top="2.0" />
+                     </VBox.margin>
+                  </Line>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="13.0">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="15.0" prefWidth="300.0">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="15.0" prefWidth="300.0">
+                           <children>
+                              <JFXTextField fx:id="txt_username" focusColor="#00897b" prefHeight="15.0" prefWidth="300.0" promptText="Username" style="-fx-text-fill: black;" unFocusColor="#a8a5a5">
+                                 <font>
+                                    <Font name="Nunito Regular" size="17.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="66.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="15.0" prefWidth="300.0">
+                           <children>
+                              <JFXPasswordField fx:id="txt_password" focusColor="#00897b" prefHeight="15.0" prefWidth="300.0" promptText="Password" style="-fx-text-fill: black;" unFocusColor="#a8a5a5">
+                                 <font>
+                                    <Font name="Nunito Regular" size="17.0" />
+                                 </font>
+                              </JFXPasswordField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="66.0" layoutY="144.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="15.0" prefWidth="300.0">
+                           <children>
+                              <JFXPasswordField fx:id="txt_conf_pass" focusColor="#00897b" prefHeight="15.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-text-fill: black;" unFocusColor="#a8a5a5">
+                                 <font>
+                                    <Font name="Nunito Regular" size="17.0" />
+                                 </font>
+                              </JFXPasswordField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="15.0" prefWidth="300.0">
+                           <children>
+                              <JFXComboBox fx:id="cmb_security" focusColor="#00897b" prefHeight="25.0" prefWidth="306.0" promptText="Security Question Here..." styleClass="cmb-security" unFocusColor="#a8a5a5" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="15.0" prefWidth="300.0">
+                           <children>
+                              <JFXPasswordField fx:id="txt_answer" focusColor="#00897b" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="15.0" prefWidth="300.0" promptText="Answer" unFocusColor="#a8a5a5">
+                                 <font>
+                                    <Font name="Nunito Regular" size="14.0" />
+                                 </font>
+                              </JFXPasswordField>
+                           </children>
+                        </HBox>
+                        <JFXCheckBox fx:id="chb_agree" onAction="#goAhead" onKeyReleased="#goAhead2" prefHeight="26.0" prefWidth="302.0" text="I agree to the terms of service">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXCheckBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="92.0" layoutY="455.0" prefHeight="65.0" prefWidth="270.0">
+               <children>
+                  <JFXButton fx:id="btn_signup" disable="true" onAction="#signUp" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #24a75f;" styleClass="btn-get-started" text="REGISTER" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <Text fill="#9a9595" layoutX="60.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already a member?">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btn_login" layoutX="217.0" layoutY="555.0" onAction="#displayLoginView" prefHeight="30.0" prefWidth="80.0" ripplerFill="#1de9b6" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #1de9b6; -fx-cursor: hand;" text="Log In" textFill="#010000" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

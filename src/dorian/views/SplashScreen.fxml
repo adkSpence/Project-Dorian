@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="splash_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@assets/SplashScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dorian.controllers.SplashScreenController">
+   <children>
+      <AnchorPane fx:id="splash_layout" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="200.0" prefWidth="200.0" styleClass="body">
+         <children>
+            <JFXButton fx:id="btn_start" layoutX="677.0" layoutY="509.0" onAction="#displayLoginView" prefHeight="49.0" prefWidth="136.0" ripplerFill="TRANSPARENT" styleClass="btn-get-started" text="GET STARTED" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
