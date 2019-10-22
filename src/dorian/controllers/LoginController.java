@@ -146,7 +146,7 @@ public class LoginController {
 
             if(!trayNotification.isTrayShowing()){
                 try {
-                    //Main.displayHomePage();
+                    Main.displayNotesPage();
                     Stage stage = (Stage) login_stage.getScene().getWindow();
                     stage.close();
                 }
