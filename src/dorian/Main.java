@@ -3,6 +3,7 @@ package dorian;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -11,9 +12,10 @@ public class Main extends Application {
 
     // View objects **************** //
 
-    static Stage main_stage;
+    public static Stage main_stage, note_stage;
     static StackPane splash_layout;
-    static Scene splash_scene;
+    public static Scene splash_scene, note_scene;
+    static BorderPane note_layout;
 
     // ***************************** //
 
@@ -33,4 +35,18 @@ public class Main extends Application {
         main_stage.initStyle(StageStyle.TRANSPARENT);
         main_stage.show();
     }
+
+    public static void displayNotesPage() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("views/Notes.fxml"));
+        note_layout = loader.load();
+        note_scene = new Scene(note_layout);
+        note_stage = new Stage();
+        note_stage.setScene(note_scene);
+        note_stage.setMaximized(true);
+        note_stage.setTitle("Project Kofi-Hey");
+        note_stage.show();
+        main_stage.close();
+    }
+
 }

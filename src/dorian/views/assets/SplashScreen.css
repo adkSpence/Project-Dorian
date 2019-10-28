@@ -9,17 +9,19 @@
 }
 
 .left-side{
-    -fx-background-image: url("splash.jpg");
+    -fx-background-image: url("logs.png");
     -fx-background-size: cover;
 }
 
 .btn-get-started{
     -fx-background-radius: 50px;
-    -fx-background-color: #00796b;
+    -fx-border-radius: 50px;
+    -fx-background-color: #fff;
+    -fx-border-color: #1fe471;
 }
 
 .btn-get-started:hover{
-    -fx-background-color: #18ffff;
+    -fx-background-color: #1fe471;
     -fx-text-fill: black;
     -fx-cursor: hand;
 }
@@ -41,7 +43,7 @@
 }
 
 .right-side{
-    -fx-background-image: url("splash.jpg");
+    -fx-background-image: url("logs.png");
     -fx-background-size: cover;
 }
 
@@ -63,7 +65,7 @@
     
 }
 .jfx-tab-pane .tab-header-area .tab-selected-line{
-    -fx-width: 10px;
+    -fx-width: 100px;
 }
 
 .right-side-reset {
