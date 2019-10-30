@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane fx:id="home_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="662.0" stylesheets="@assets/SplashScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dorian.controllers.NotesController">
+   <center>
+      <JFXTabPane fx:id="tabpane_main" minHeight="-Infinity" prefHeight="474.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <tabs>
+            <Tab fx:id="tab_encrypt" text="Encrypt Message">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <SplitPane dividerPositions="0.5012113870381587" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <BorderPane layoutX="38.0" layoutY="89.0" prefHeight="435.2" prefWidth="328.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <center>
+                                          <TextArea fx:id="ta_plaintext" prefHeight="293.0" prefWidth="318.0" promptText="Enter message here..." wrapText="true" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Hind Regular" size="18.0" />
+                                             </font></TextArea>
+                                       </center>
+                                       <bottom>
+                                          <HBox alignment="BOTTOM_RIGHT" prefHeight="54.0" prefWidth="318.0" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
+                                             <children>
+                                                <JFXButton fx:id="btn_update" contentDisplay="RIGHT" disable="true" onAction="#updateEntry" style="-fx-background-color: #1de9b6; -fx-cursor: hand;" text="Update">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/update.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                   <font>
+                                                      <Font name="Roboto" size="12.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_reset" contentDisplay="RIGHT" onAction="#reset" style="-fx-background-color: #ffc107; -fx-cursor: hand;" text="Reset">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/reset.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                   <font>
+                                                      <Font name="Roboto" size="12.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_encrypt" buttonType="RAISED" graphicTextGap="5.0" onAction="#encryptPlainText" prefHeight="34.0" prefWidth="146.0" ripplerFill="#746e6e" style="-fx-border-width: 1px 1px 1px 1px; -fx-background-color: #03a9f4; -fx-text-fill: #000000; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-cursor: hand;" text="ENCRYPT">
+                                                   <font>
+                                                      <Font name="Roboto" size="15.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/locked.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <top>
+                                          <BorderPane prefHeight="32.0" prefWidth="318.0" BorderPane.alignment="CENTER">
+                                             <center>
+                                                <JFXTextField fx:id="enc_txt_entry" focusColor="#1de9b6d6" promptText="Entry Title" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Hind Regular" size="24.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                             </center>
+                                             <right>
+                                                <VBox prefHeight="43.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <Label text="Secret Key Number">
+                                                         <font>
+                                                            <Font name="Nunito Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Spinner fx:id="enc_secret_key" editable="true" prefHeight="34.0" prefWidth="134.0" />
+                                                   </children>
+                                                </VBox>
+                                             </right>
+                                          </BorderPane>
+                                       </top>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <BorderPane layoutX="90.0" layoutY="101.0" prefHeight="435.2" prefWidth="326.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <center>
+                                          <TextArea fx:id="ta_cipher_text" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Cipher Text..." wrapText="true" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Hind Regular" size="18.0" />
+                                             </font>
+                                          </TextArea>
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab text="Decrypt Message">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <SplitPane dividerPositions="0.5012113870381587" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <BorderPane layoutX="56.0" layoutY="100.0" prefHeight="435.2" prefWidth="328.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <center>
+                                          <TextArea fx:id="ta_dec_ciphertext" prefHeight="202.0" prefWidth="318.0" promptText="Ciphered Text here..." visible="false" wrapText="true" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Hind Regular" size="15.0" />
+                                             </font>
+                                          </TextArea>
+                                       </center>
+                                       <bottom>
+                                          <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <JFXButton fx:id="btn_edit" contentDisplay="RIGHT" disable="true" onAction="#editMessage" prefHeight="29.6" prefWidth="75.2" style="-fx-background-color: #00e676; -fx-cursor: hand;" text="Edit">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/edit.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                   <font>
+                                                      <Font name="Roboto" size="12.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_delete" contentDisplay="RIGHT" disable="true" onAction="#deleteEntry" style="-fx-background-color: #ff5252; -fx-cursor: hand;" text="Delete">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/trash.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                   <font>
+                                                      <Font name="Roboto" size="12.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_dec_reset" contentDisplay="RIGHT" onAction="#reset2" style="-fx-background-color: #ffc107; -fx-cursor: hand;" text="Reset">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/reset.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                   <font>
+                                                      <Font name="Roboto" size="12.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_decrypt" buttonType="RAISED" graphicTextGap="5.0" maxHeight="-Infinity" onAction="#decryptCodedText" prefHeight="34.0" prefWidth="146.0" ripplerFill="#746e6e" style="-fx-background-color: #03a9f4; -fx-text-fill: #000000; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-cursor: hand;" text="DECRYPT">
+                                                   <font>
+                                                      <Font name="Roboto" size="15.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/unlocked.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <top>
+                                          <BorderPane prefHeight="42.0" prefWidth="318.0" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" />
+                                             </BorderPane.margin>
+                                             <center>
+                                                <JFXTextField fx:id="dec_txt_entry" focusColor="#1de9b6" prefHeight="36.0" prefWidth="200.0" promptText="Entry Title" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Hind Regular" size="24.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                             </center>
+                                             <right>
+                                                <VBox prefHeight="43.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <Label text="Secret Key Number">
+                                                         <font>
+                                                            <Font name="Nunito Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Spinner fx:id="dec_secret_key" editable="true" prefHeight="38.0" prefWidth="134.0" />
+                                                   </children>
+                                                </VBox>
+                                             </right>
+                                             <bottom>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="94.0" prefWidth="318.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <JFXCheckBox fx:id="cb_allow" disable="true" onAction="#allowModification" onKeyPressed="#allowModification2" text="Enable Modifications">
+                                                         <font>
+                                                            <Font name="Nunito Regular" size="13.0" />
+                                                         </font>
+                                                      </JFXCheckBox>
+                                                   </children>
+                                                </HBox>
+                                             </bottom>
+                                          </BorderPane>
+                                       </top>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <BorderPane layoutX="71.0" layoutY="110.0" prefHeight="435.2" prefWidth="326.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <center>
+                                          <TextArea fx:id="ta_dec_plaintext" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Plain message here..." wrapText="true" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Hind Regular" size="18.0" />
+                                             </font>
+                                          </TextArea>
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </center>
+   <bottom>
+      <JFXButton fx:id="btn_logout" onAction="#signOut" text="Log Out" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

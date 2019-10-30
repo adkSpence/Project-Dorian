@@ -49,4 +49,14 @@ public class Main extends Application {
         main_stage.close();
     }
 
+    public static void displaySignOut() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("views/SplashScreen.fxml"));
+        splash_layout = loader.load();
+        splash_scene = new Scene(splash_layout);
+        Stage signout_stage = new Stage();
+        signout_stage.setScene(splash_scene);
+        signout_stage.initStyle(StageStyle.TRANSPARENT);
+        signout_stage.show();
+    }
 }

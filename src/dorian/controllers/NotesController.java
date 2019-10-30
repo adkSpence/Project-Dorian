@@ -14,7 +14,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import tray.animations.AnimationType;
@@ -100,9 +99,8 @@ public class NotesController implements Initializable {
         String table_query = "CREATE TABLE IF NOT EXISTS Entries (\n" +
                 " Username String NOT NULL, \n" +
                 " Entry_Title String NOT NULL, \n" +
-                " Secret_Key Blob NOT NULL, \n" +
-                " Encrypted_Message Blob NOT NULL, \n" +
-                " Shared_Secret int NOT NULL);";
+                " Secret_Key String NOT NULL, \n" +
+                " Encrypted_Message String NOT NULL);";
 
         // Creates the Credentials Table
         try{
@@ -147,15 +145,15 @@ public class NotesController implements Initializable {
             try{
                 PreparedStatement preparedStatement = null;
 
-                String query = "INSERT INTO Entries (Username, Entry_Title, Secret_Key, Encrypted_Message, Shared_Secret)" +
+                String query = "INSERT INTO Entries (Username, Entry_Title, Secret_Key, Encrypted_Message)" +
                         " " +
-                        "VALUES (?, ?, ?, ?, ?);";
+                        "VALUES (?, ?, ?, ?);";
 
                 preparedStatement = SQLStatements.connection.prepareStatement(query);
                 preparedStatement.setString(1, LoginController.username);
                 preparedStatement.setString(2, enc_txt_entry.getText().toLowerCase());
-                //preparedStatement.setBytes(3, secret_key);
-                //preparedStatement.setBytes(4, coded_text);
+                preparedStatement.setString(3, secret_key);
+                preparedStatement.setString(4, coded_text);
                 //preparedStatement.setInt(5, Integer.valueOf(shared_secret));
 
                 preparedStatement.executeUpdate();
@@ -285,7 +283,7 @@ public class NotesController implements Initializable {
     @FXML
     private void signOut() {
         try{
-            Main.displaySplashScreen();
+            Main.displaySignOut();
             Main.note_stage.close();
         }
         catch (Exception e){
