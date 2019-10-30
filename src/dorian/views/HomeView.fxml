@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="752.0" stylesheets="@assets/SplashScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <JFXTabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="567.0" prefWidth="781.0" tabMinHeight="30.0" tabMinWidth="330.0" BorderPane.alignment="CENTER_LEFT">
+         <tabs>
+            <Tab text="Logins">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <JFXListView BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab text="Secure Notes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+         </tabs>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </JFXTabPane>
+   </center>
+</BorderPane>
