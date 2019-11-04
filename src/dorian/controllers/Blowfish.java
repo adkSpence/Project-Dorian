@@ -52,19 +52,21 @@ class Blowfish {
         return decrypted;
     }
 
-    public static String encryptMessage(String inputMessage) throws Exception {
+    public static byte[] encryptMessage(String inputMessage) throws Exception {
         byte[] ibyte = inputMessage.getBytes();
         byte[] ebyte = encrypt(raw, ibyte);
-        String encryptedData = new String(ebyte);
 
-        return encryptedData;
+        return ebyte;
     }
 
-    public static String decryptMessage(byte[] encryptedText) throws Exception {
-        byte[] dbyte= decrypt(raw, encryptedText);
+    public static String decryptMessage(byte[] raw_key, byte[] encryptedText) throws Exception {
+        byte[] dbyte = decrypt(raw_key, encryptedText);
         String decryptedMessage = new String(dbyte);
 
         return decryptedMessage;
     }
 
+    public static byte[] getRaw() {
+        return raw;
+    }
 }

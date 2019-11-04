@@ -21,6 +21,7 @@ import tray.notification.TrayNotification;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class NotesController implements Initializable {
@@ -53,9 +54,6 @@ public class NotesController implements Initializable {
     private TextArea ta_cipher_text;
 
     @FXML
-    private TextArea ta_dec_ciphertext;
-
-    @FXML
     private JFXButton btn_edit;
 
     @FXML
@@ -63,9 +61,6 @@ public class NotesController implements Initializable {
 
     @FXML
     private JFXButton btn_dec_reset;
-
-    @FXML
-    private JFXButton btn_decrypt;
 
     @FXML
     private JFXTextField dec_txt_entry;
@@ -82,7 +77,7 @@ public class NotesController implements Initializable {
     @FXML
     private JFXButton btn_logout;
 
-    String secret_key, coded_text;
+    private byte[] secret_key, coded_text, raw_key;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -99,8 +94,9 @@ public class NotesController implements Initializable {
         String table_query = "CREATE TABLE IF NOT EXISTS Entries (\n" +
                 " Username String NOT NULL, \n" +
                 " Entry_Title String NOT NULL, \n" +
-                " Secret_Key String NOT NULL, \n" +
-                " Encrypted_Message String NOT NULL);";
+                " Secret_Key BLOB NOT NULL, \n" +
+                " Raw_Key BLOB NOT NULL, \n" +
+                " Encrypted_Message BLOB NOT NULL);";
 
         // Creates the Credentials Table
         try{
@@ -128,11 +124,9 @@ public class NotesController implements Initializable {
             // Encrypting plain text of message title, secret key and message itself
             coded_text = Blowfish.encryptMessage(ta_plaintext.getText());
             secret_key = Blowfish.encryptMessage(String.valueOf(enc_secret_key.getValue()));
+            raw_key = Blowfish.getRaw();
 
             ta_cipher_text.setText(String.valueOf(coded_text));
-
-            System.out.println(coded_text);
-            System.out.println(secret_key);
 
             TrayNotification trayNotification = new TrayNotification();
             trayNotification.setMessage("Entry text content and secret key encrypted!");
@@ -145,15 +139,16 @@ public class NotesController implements Initializable {
             try{
                 PreparedStatement preparedStatement = null;
 
-                String query = "INSERT INTO Entries (Username, Entry_Title, Secret_Key, Encrypted_Message)" +
+                String query = "INSERT INTO Entries (Username, Entry_Title, Secret_Key, Raw_Key, Encrypted_Message)" +
                         " " +
-                        "VALUES (?, ?, ?, ?);";
+                        "VALUES (?, ?, ?, ?, ?);";
 
                 preparedStatement = SQLStatements.connection.prepareStatement(query);
                 preparedStatement.setString(1, LoginController.username);
                 preparedStatement.setString(2, enc_txt_entry.getText().toLowerCase());
-                preparedStatement.setString(3, secret_key);
-                preparedStatement.setString(4, coded_text);
+                preparedStatement.setBytes(3, secret_key);
+                preparedStatement.setBytes(4, raw_key);
+                preparedStatement.setBytes(5, coded_text);
                 //preparedStatement.setInt(5, Integer.valueOf(shared_secret));
 
                 preparedStatement.executeUpdate();
@@ -200,6 +195,53 @@ public class NotesController implements Initializable {
     @FXML
     void decryptCodedText() {
 
+        if(!(dec_txt_entry.getText().isEmpty())) {
+            // Selecting cipher text based on entry title
+            try {
+                String query = "SELECT * FROM Entries WHERE Username=? AND Entry_Title=?";
+                PreparedStatement preparedStatement = SQLStatements.connection.prepareStatement(query);
+                preparedStatement.setString(1, LoginController.username);
+                preparedStatement.setString(2, dec_txt_entry.getText().toLowerCase());
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    // Saving encrypted message and secret key to variables coded_text & secret_key as bytes
+                    coded_text = resultSet.getBytes("Encrypted_Message");
+                    secret_key = resultSet.getBytes("Secret_Key");
+                    raw_key = resultSet.getBytes("Raw_Key");
+
+                /*
+                Need to decrypt secret key first then
+                convert to integer and compare to see if keys are right before decrypting
+                */
+                    String decoded_key = Blowfish.decryptMessage(raw_key, secret_key);
+
+                    if (Integer.valueOf(decoded_key).equals(dec_secret_key.getValue())) {
+                        // Retrieve encrypted message as bytes from the database
+                        String decoded_message = Blowfish.decryptMessage(raw_key, coded_text);
+
+                        ta_dec_plaintext.setText(decoded_message);
+                        cb_allow.setDisable(false);
+
+                        TrayNotification trayNotification = new TrayNotification();
+                        trayNotification.setMessage("Plaintext restored!");
+                        trayNotification.setAnimationType(AnimationType.POPUP);
+                        trayNotification.setRectangleFill(Paint.valueOf("#00e676"));
+                        trayNotification.setTitle("Decrypted Successfully");
+                        //trayNotification.setImage(dec_image);
+                        trayNotification.showAndDismiss(Duration.seconds(3));
+                    }
+
+                }
+
+                preparedStatement.close();
+                resultSet.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
@@ -209,7 +251,7 @@ public class NotesController implements Initializable {
             PreparedStatement preparedStatement = SQLStatements.connection.prepareStatement(query);
             preparedStatement.setString(1, LoginController.username);
             preparedStatement.setString(2, dec_txt_entry.getText().toLowerCase());
-            //preparedStatement.setBytes(3, secret_key);
+            preparedStatement.setBytes(3, secret_key);
 
             preparedStatement.executeUpdate();
 
